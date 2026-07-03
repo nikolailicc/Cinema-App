@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">CineBook</string>
+
+    <string name="login">Prijava</string>
+    <string name="register">Registracija</string>
+    <string name="username">Korisničko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="no_account">Nemate nalog? Registrujte se</string>
+    <string name="have_account">Već imate nalog? Prijavite se</string>
+
+    <string name="movies">Filmovi</string>
+    <string name="my_reservations">Moje rezervacije</string>
+    <string name="cinema_location">Lokacija bioskopa</string>
+    <string name="logout">Odjava</string>
+    <string name="add_movie">Dodaj film</string>
+
+    <string name="reserve">Rezerviši</string>
+    <string name="add_to_watchlist">Dodaj na watchlist</string>
+    <string name="remove_from_watchlist">Ukloni sa watchlist-a</string>
+    <string name="rate_movie">Oceni film</string>
+    <string name="comments">Komentari</string>
+    <string name="add_comment">Dodaj komentar</string>
+    <string name="number_of_tickets">Broj karata</string>
+    <string name="confirm">Potvrdi</string>
+    <string name="cancel">Otkaži</string>
+    <string name="edit">Izmeni</string>
+    <string name="delete">Obriši</string>
+    <string name="upload_image">Postavi sliku</string>
+    <string name="save">Sačuvaj</string>
+
+    <string name="title">Naziv filma</string>
+    <string name="description">Opis</string>
+    <string name="genre">Žanr</string>
+    <string name="duration">Trajanje (min)</string>
+    <string name="screening_date">Datum prikazivanja (yyyy-MM-dd)</string>
+
+    <string name="navigate">Navigiraj do bioskopa</string>
+    <string name="cinema_name">Bioskop "Kolosej" Beograd</string>
+    <string name="cinema_address">Karađorđeva 3, Beograd</string>
+
+    <string name="reservation_created">Rezervacija je uspešno kreirana</string>
+    <string name="reminder_channel_name">Podsetnici za rezervacije</string>
+    <string name="reminder_title">Podsetnik: rezervacija filma</string>
+    <string name="reminder_text_placeholder">Vaš film %1$s počinje danas!</string>
+
+    <string name="uploading_image">Slika se postavlja…</string>
+    <string name="upload_success">Slika je uspešno postavljena</string>
+    <string name="upload_failed">Greška prilikom postavljanja slike</string>
+
+    <string name="empty_field_error">Popunite sva obavezna polja</string>
+    <string name="login_failed">Neuspešna prijava. Proverite podatke.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_add_movie"
+        android:title="@string/add_movie"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_reservations"
+        android:title="@string/my_reservations"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_map"
+        android:title="@string/cinema_location"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/logout"
+        android:showAsAction="never" />
+
+</menu>

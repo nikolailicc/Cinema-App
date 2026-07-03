@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:name=".CineBookApp"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.CineBook"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.MainActivity" android:exported="false" />
+        <activity android:name=".ui.MovieDetailActivity" android:exported="false" />
+        <activity android:name=".ui.AddEditMovieActivity" android:exported="false" />
+        <activity android:name=".ui.MyReservationsActivity" android:exported="false" />
+        <activity android:name=".ui.CinemaMapActivity" android:exported="false" />
+
+        <!-- Content provider za lokalni (offline) watchlist -->
+        <provider
+            android:name=".provider.WatchlistProvider"
+            android:authorities="com.example.cinebook.provider"
+            android:exported="false" />
+
+        <!-- Broadcast receiver koji prikazuje notifikaciju kad alarm okine -->
+        <receiver
+            android:name=".notification.ReservationReminderReceiver"
+            android:exported="false" />
+
+        <!-- Ponovno zakazivanje alarma nakon restarta uredjaja -->
+        <receiver
+            android:name=".notification.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

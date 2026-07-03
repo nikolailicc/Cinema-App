@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_fragment_movie_list.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\fragment_movie_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_activity_movie_detail.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_movie_detail.xml"
+    },
+    {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout-sw600dp_activity_main.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout-sw600dp/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_activity_my_reservations.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_my_reservations.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_item_movie.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\item_movie.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_activity_add_edit_movie.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_add_edit_movie.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\drawable_card_background.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\drawable\\card_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\menu_menu_main.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\drawable_ic_back.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\drawable\\ic_back.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_item_reservation.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\item_reservation.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_item_comment.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\item_comment.xml"
+    },
+    {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_map.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout/activity_map.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_activity_map.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_map.xml"
+    },
+    {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_add_edit_movie.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout/activity_add_edit_movie.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout-sw600dp_activity_main.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout-sw600dp\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\drawable_ic_launcher.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\drawable\\ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_movie_detail.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout/activity_movie_detail.xml"
+    },
+    {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_my_reservations.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout/activity_my_reservations.xml"
+    },
+    {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_main.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_fragment_movie_detail.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\fragment_movie_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_main.xml"
+    }
+]
