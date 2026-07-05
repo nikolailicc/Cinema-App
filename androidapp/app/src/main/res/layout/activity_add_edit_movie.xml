@@ -18,7 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_marginHorizontal="-20dp"
             android:background="@color/primary"
-            android:titleTextColor="@color/white"
+            app:titleTextColor="@color/white"
             app:navigationIcon="@drawable/ic_back"
             app:title="@string/add_movie" />
 

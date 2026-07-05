@@ -182,7 +182,7 @@ public class MovieDetailFragment extends Fragment {
         if (TextUtils.isEmpty(text)) return;
 
         Map<String, String> body = new HashMap<>();
-        body.put("text", text);
+        body.put("content", text);
 
         ApiService api = RetrofitClient.getApiService(requireContext());
         api.addComment(movie.getId(), body).enqueue(new Callback<Object>() {
@@ -201,12 +201,16 @@ public class MovieDetailFragment extends Fragment {
 
     private void rateMovie(int stars) {
         Map<String, Integer> body = new HashMap<>();
-        body.put("rating", stars);
+        body.put("stars", stars);
         ApiService api = RetrofitClient.getApiService(requireContext());
         api.rateMovie(movie.getId(), body).enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
-                Toast.makeText(requireContext(), "Ocena sačuvana", Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    Toast.makeText(requireContext(), "Ocena sačuvana", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), "Greška pri ocenjivanju", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -270,6 +274,7 @@ public class MovieDetailFragment extends Fragment {
 
     private void createReservation(int tickets) {
         Map<String, Integer> body = new HashMap<>();
+        body.put("userId", (int) session.getUserId());
         body.put("movieId", movie.getId().intValue());
         body.put("numberOfTickets", tickets);
 

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primary"
-        android:titleTextColor="@color/white"
+        app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_back"
         app:title="@string/cinema_location" />
 

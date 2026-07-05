@@ -16,6 +16,8 @@ public class SessionManager {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_ROLE = "role";
 
+    private static final String KEY_USER_ID = "user_id";
+
     private final SharedPreferences prefs;
 
     public SessionManager(Context context) {
@@ -29,6 +31,14 @@ public class SessionManager {
                 .putString(KEY_PASSWORD, password)
                 .putString(KEY_ROLE, role)
                 .apply();
+    }
+
+    public void saveUserId(long userId) {
+        prefs.edit().putLong(KEY_USER_ID, userId).apply();
+    }
+
+    public long getUserId() {
+        return prefs.getLong(KEY_USER_ID, -1);
     }
 
     public void updateRole(String role) {

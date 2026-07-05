@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     User user = response.body();
                     session.saveSession(username, password, user.getRole());
+                    session.saveUserId(user.getId());
                     goToMain();
                 } else {
                     session.clear();

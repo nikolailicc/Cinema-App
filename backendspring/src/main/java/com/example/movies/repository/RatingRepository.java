@@ -17,4 +17,6 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     @Query("SELECT r.movie.genre, AVG(r.stars) FROM Rating r GROUP BY r.movie.genre")
     List<Object[]> findAverageRatingByGenre();
+    
+    void deleteByMovie(Movie movie);
 }

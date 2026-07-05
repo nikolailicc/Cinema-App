@@ -28,10 +28,10 @@ com.example.cinebook.app-lifecycle-viewmodel-2.6.1-26 C:\Users\USER\.gradle\cach
 com.example.cinebook.app-emoji2-views-helper-1.2.0-27 C:\Users\USER\.gradle\caches\transforms-3\e172b44c4672e51c085662bb1bf12485\transformed\emoji2-views-helper-1.2.0\res
 com.example.cinebook.app-appcompat-resources-1.6.1-28 C:\Users\USER\.gradle\caches\transforms-3\e27fb5200da26533242d35fada05a7af\transformed\appcompat-resources-1.6.1\res
 com.example.cinebook.app-drawerlayout-1.1.1-29 C:\Users\USER\.gradle\caches\transforms-3\ed3d2cbbd0b7adc69330f4f5d5203a98\transformed\drawerlayout-1.1.1\res
-com.example.cinebook.app-pngs-30 C:\Users\USER\Desktop\RmaProjekat\app\build\generated\res\pngs\debug
-com.example.cinebook.app-resValues-31 C:\Users\USER\Desktop\RmaProjekat\app\build\generated\res\resValues\debug
-com.example.cinebook.app-packageDebugResources-32 C:\Users\USER\Desktop\RmaProjekat\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.cinebook.app-packageDebugResources-33 C:\Users\USER\Desktop\RmaProjekat\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.cinebook.app-merged_res-34 C:\Users\USER\Desktop\RmaProjekat\app\build\intermediates\merged_res\debug
-com.example.cinebook.app-debug-35 C:\Users\USER\Desktop\RmaProjekat\app\src\debug\res
-com.example.cinebook.app-main-36 C:\Users\USER\Desktop\RmaProjekat\app\src\main\res
+com.example.cinebook.app-pngs-30 C:\Users\USER\Desktop\android\androidapp\app\build\generated\res\pngs\debug
+com.example.cinebook.app-resValues-31 C:\Users\USER\Desktop\android\androidapp\app\build\generated\res\resValues\debug
+com.example.cinebook.app-packageDebugResources-32 C:\Users\USER\Desktop\android\androidapp\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.cinebook.app-packageDebugResources-33 C:\Users\USER\Desktop\android\androidapp\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.cinebook.app-merged_res-34 C:\Users\USER\Desktop\android\androidapp\app\build\intermediates\merged_res\debug
+com.example.cinebook.app-debug-35 C:\Users\USER\Desktop\android\androidapp\app\src\debug\res
+com.example.cinebook.app-main-36 C:\Users\USER\Desktop\android\androidapp\app\src\main\res
