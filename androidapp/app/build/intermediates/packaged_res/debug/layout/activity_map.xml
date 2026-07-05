@@ -14,7 +14,8 @@
         android:background="@color/primary"
         app:titleTextColor="@color/white"
         app:navigationIcon="@drawable/ic_back"
-        app:title="@string/cinema_location" />
+        app:title="@string/cinema_location"
+        />
 
     <WebView
         android:id="@+id/webViewMap"

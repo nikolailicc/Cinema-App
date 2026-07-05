@@ -48,16 +48,16 @@
         "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout\\activity_map.xml"
     },
     {
+        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_add_edit_movie.xml.flat",
+        "source": "com.example.cinebook.app-main-36:/layout/activity_add_edit_movie.xml"
+    },
+    {
         "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout-sw600dp_activity_main.xml.flat",
         "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\layout-sw600dp\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\drawable_ic_launcher.xml.flat",
         "source": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-main-36:\\drawable\\ic_launcher.xml"
-    },
-    {
-        "merged": "com.example.cinebook.app-merged_res-34:/layout_activity_main.xml.flat",
-        "source": "com.example.cinebook.app-main-36:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.4\\com.example.cinebook.app-merged_res-34:\\layout_fragment_movie_detail.xml.flat",
