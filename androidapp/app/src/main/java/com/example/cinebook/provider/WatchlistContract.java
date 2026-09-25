@@ -16,6 +16,7 @@ public final class WatchlistContract {
 
     public static final class Entry implements BaseColumns {
         public static final String TABLE_NAME = "watchlist";
+        public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_MOVIE_ID = "movie_id";
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_IMAGE_URL = "image_url";

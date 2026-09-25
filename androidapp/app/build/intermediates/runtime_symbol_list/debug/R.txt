@@ -3184,7 +3184,6 @@ int id btnDelete 0x7f080068
 int id btnDeleteReservation 0x7f080069
 int id btnEdit 0x7f08006a
 int id btnLogin 0x7f08006b
-int id btnNavigate 0x7f08006c
 int id btnPickImage 0x7f08006d
 int id btnReserve 0x7f08006e
 int id btnSave 0x7f08006f

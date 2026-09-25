@@ -1,10 +1,17 @@
 package com.example.movies.controller;
 
-import com.example.movies.service.RatingService;
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.movies.service.RatingService;
 
 @RestController
 @RequestMapping("/ratings")
@@ -20,7 +27,11 @@ public class RatingController {
     public ResponseEntity<?> rate(@PathVariable Long movieId,
                                    @RequestBody Map<String, Integer> body,
                                    Authentication auth) {
-        return ResponseEntity.ok(ratingService.rateMovie(auth.getName(), movieId, body.get("stars")));
+        Integer stars = body == null ? null : body.get("stars");
+        if (stars == null || stars < 1 || stars > 5) {
+            return ResponseEntity.badRequest().body("Ocena mora biti između 1 i 5");
+        }
+        return ResponseEntity.ok(ratingService.rateMovie(auth.getName(), movieId, stars));
     }
 
     @GetMapping("/{movieId}")

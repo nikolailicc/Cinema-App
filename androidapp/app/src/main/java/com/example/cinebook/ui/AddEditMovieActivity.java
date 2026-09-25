@@ -84,7 +84,8 @@ public class AddEditMovieActivity extends AppCompatActivity {
         editDuration.setText(movie.getDuration() != null ? String.valueOf(movie.getDuration()) : "");
         editScreeningDate.setText(movie.getScreeningDate());
         if (movie.getImageUrl() != null && !movie.getImageUrl().isEmpty()) {
-            Glide.with(this).load(movie.getImageUrl()).centerCrop().into(imagePreview);
+                Glide.with(this).load(RetrofitClient.absoluteImageUrl(movie.getImageUrl()))
+                    .centerCrop().into(imagePreview);
         }
     }
 
@@ -104,7 +105,12 @@ public class AddEditMovieActivity extends AppCompatActivity {
         payload.setTitle(title);
         payload.setDescription(description);
         payload.setGenre(genre);
-        payload.setDuration(Integer.parseInt(durationStr));
+        try {
+            payload.setDuration(Integer.parseInt(durationStr));
+        } catch (NumberFormatException e) {
+            editDuration.setError("Unesite broj minuta");
+            return;
+        }
         payload.setScreeningDate(screeningDate);
 
         ApiService api = RetrofitClient.getApiService(this);

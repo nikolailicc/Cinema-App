@@ -54,7 +54,8 @@ public class WatchlistProvider extends ContentProvider {
             case WATCHLIST_ID:
                 long movieId = ContentUris.parseId(uri);
                 cursor = db.query(Entry.TABLE_NAME, projection,
-                        Entry.COLUMN_MOVIE_ID + "=?", new String[]{String.valueOf(movieId)},
+                        appendIdSelection(selection, Entry.COLUMN_MOVIE_ID + "=?"),
+                        appendIdArgs(selectionArgs, String.valueOf(movieId)),
                         null, null, null);
                 break;
             default:
@@ -81,13 +82,27 @@ public class WatchlistProvider extends ContentProvider {
         int rows;
         if (match == WATCHLIST_ID) {
             long movieId = ContentUris.parseId(uri);
-            rows = db.delete(Entry.TABLE_NAME, Entry.COLUMN_MOVIE_ID + "=?",
-                    new String[]{String.valueOf(movieId)});
+            rows = db.delete(Entry.TABLE_NAME,
+                appendIdSelection(selection, Entry.COLUMN_MOVIE_ID + "=?"),
+                appendIdArgs(selectionArgs, String.valueOf(movieId)));
         } else {
             rows = db.delete(Entry.TABLE_NAME, selection, selectionArgs);
         }
         getContext().getContentResolver().notifyChange(uri, null);
         return rows;
+    }
+
+    private String appendIdSelection(String selection, String idSelection) {
+        return selection == null ? idSelection : "(" + selection + ") AND " + idSelection;
+    }
+
+    private String[] appendIdArgs(String[] selectionArgs, String movieId) {
+        String[] args = new String[(selectionArgs == null ? 0 : selectionArgs.length) + 1];
+        if (selectionArgs != null) {
+            System.arraycopy(selectionArgs, 0, args, 0, selectionArgs.length);
+        }
+        args[args.length - 1] = movieId;
+        return args;
     }
 
     @Override

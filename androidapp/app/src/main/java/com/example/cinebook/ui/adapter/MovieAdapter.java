@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.cinebook.api.RetrofitClient;
 import com.example.cinebook.R;
 import com.example.cinebook.model.Movie;
 
@@ -58,7 +59,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
         if (movie.getImageUrl() != null && !movie.getImageUrl().isEmpty()) {
             Glide.with(holder.itemView.getContext())
-                    .load(movie.getImageUrl())
+                    .load(RetrofitClient.absoluteImageUrl(movie.getImageUrl()))
                     .centerCrop()
                     .into(holder.poster);
         } else {

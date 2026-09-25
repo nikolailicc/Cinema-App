@@ -8,6 +8,7 @@ import android.database.Cursor;
 
 import com.example.cinebook.model.Movie;
 import com.example.cinebook.provider.WatchlistContract.Entry;
+import com.example.cinebook.util.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,16 @@ import java.util.List;
 public class WatchlistLocalStore {
 
     private final ContentResolver resolver;
+    private final String username;
 
     public WatchlistLocalStore(Context context) {
         this.resolver = context.getApplicationContext().getContentResolver();
+        this.username = new SessionManager(context).getUsername();
     }
 
     public void add(Movie movie) {
         ContentValues values = new ContentValues();
+        values.put(Entry.COLUMN_USERNAME, username);
         values.put(Entry.COLUMN_MOVIE_ID, movie.getId());
         values.put(Entry.COLUMN_TITLE, movie.getTitle());
         values.put(Entry.COLUMN_IMAGE_URL, movie.getImageUrl());
@@ -34,20 +38,23 @@ public class WatchlistLocalStore {
     }
 
     public void remove(long movieId) {
-        resolver.delete(ContentUris.withAppendedId(WatchlistContract.CONTENT_URI, movieId), null, null);
+        resolver.delete(WatchlistContract.CONTENT_URI,
+            Entry.COLUMN_USERNAME + "=? AND " + Entry.COLUMN_MOVIE_ID + "=?",
+            new String[]{username, String.valueOf(movieId)});
     }
 
     public boolean isInWatchlist(long movieId) {
         try (Cursor c = resolver.query(
                 ContentUris.withAppendedId(WatchlistContract.CONTENT_URI, movieId),
-                null, null, null, null)) {
+            null, Entry.COLUMN_USERNAME + "=?", new String[]{username}, null)) {
             return c != null && c.getCount() > 0;
         }
     }
 
     public List<Movie> getAll() {
         List<Movie> result = new ArrayList<>();
-        try (Cursor c = resolver.query(WatchlistContract.CONTENT_URI, null, null, null, null)) {
+        try (Cursor c = resolver.query(WatchlistContract.CONTENT_URI, null,
+            Entry.COLUMN_USERNAME + "=?", new String[]{username}, null)) {
             if (c != null) {
                 while (c.moveToNext()) {
                     Movie m = new Movie();

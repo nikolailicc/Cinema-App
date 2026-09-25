@@ -19,10 +19,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    // Ukoliko testiras na fizickom uredjaju/emulatoru, 10.0.2.2 mapira na localhost racunara (Android Emulator)
     private static final String BASE_URL = "http://10.0.2.2:8080/";
 
     private static ApiService apiService;
+
+    public static String absoluteImageUrl(String imageUrl) {
+        if (imageUrl == null || imageUrl.isEmpty() || imageUrl.startsWith("http://")
+                || imageUrl.startsWith("https://")) {
+            return imageUrl;
+        }
+        return BASE_URL + (imageUrl.startsWith("/") ? imageUrl.substring(1) : imageUrl);
+    }
 
     public static ApiService getApiService(Context context) {
         if (apiService == null) {

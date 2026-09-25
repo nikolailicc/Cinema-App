@@ -3,6 +3,7 @@ package com.example.cinebook.api;
 import com.example.cinebook.model.Movie;
 import com.example.cinebook.model.Reservation;
 import com.example.cinebook.model.User;
+import com.example.cinebook.model.WatchlistEntry;
 
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,7 @@ public interface ApiService {
 
     // ---- WATCHLIST ----
     @GET("watchlist")
-    Call<List<Movie>> getMyWatchlist();
+    Call<List<WatchlistEntry>> getMyWatchlist();
 
     @POST("watchlist/{movieId}")
     Call<Object> addToWatchlist(@Path("movieId") long movieId, @Body Map<String, String> body);

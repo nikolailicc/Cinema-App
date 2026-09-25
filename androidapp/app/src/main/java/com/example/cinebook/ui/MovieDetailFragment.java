@@ -135,7 +135,8 @@ public class MovieDetailFragment extends Fragment {
         btnWatchlist.setText(inWatchlist ? R.string.remove_from_watchlist : R.string.add_to_watchlist);
 
         if (movie.getImageUrl() != null && !movie.getImageUrl().isEmpty()) {
-            Glide.with(this).load(movie.getImageUrl()).centerCrop().into(imagePoster);
+                Glide.with(this).load(RetrofitClient.absoluteImageUrl(movie.getImageUrl()))
+                    .centerCrop().into(imagePoster);
         }
     }
 
@@ -145,10 +146,12 @@ public class MovieDetailFragment extends Fragment {
             @Override
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Object avg = response.body().containsKey("average")
+                        Object myRating = response.body().get("myRating");
+                        Object average = response.body().containsKey("average")
                             ? response.body().get("average") : response.body().get("rating");
-                    if (avg instanceof Number) {
-                        ratingBar.setRating(((Number) avg).floatValue());
+                        Object displayedRating = myRating instanceof Number ? myRating : average;
+                        if (displayedRating instanceof Number) {
+                        ratingBar.setRating(((Number) displayedRating).floatValue());
                     }
                 }
             }

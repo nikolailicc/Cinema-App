@@ -38,8 +38,7 @@ public class CinemaMapActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("file:///android_asset/map.html");
 
-        findViewById(R.id.btnNavigate).setOnClickListener(v -> openNavigation());
-    }
+   }
 
     private void openNavigation() {
         // "geo:" URI otvara podrazumevanu (bilo koju instaliranu) navigacionu aplikaciju

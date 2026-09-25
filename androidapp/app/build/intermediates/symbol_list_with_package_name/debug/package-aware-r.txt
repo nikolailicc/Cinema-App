@@ -3185,7 +3185,6 @@ id btnDelete
 id btnDeleteReservation
 id btnEdit
 id btnLogin
-id btnNavigate
 id btnPickImage
 id btnReserve
 id btnSave

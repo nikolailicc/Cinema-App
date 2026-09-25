@@ -1,19 +1,22 @@
 package com.example.movies.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.movies.model.Movie;
 import com.example.movies.repository.CommentRepository;
 import com.example.movies.repository.MovieRepository;
 import com.example.movies.repository.RatingRepository;
 import com.example.movies.repository.ReservationRepository;
 import com.example.movies.repository.WatchlistRepository;
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.io.IOException;
-import java.nio.file.*;
-import java.util.List;
 
 @Service
 public class MovieService {
@@ -78,6 +81,9 @@ public class MovieService {
 
 	public Movie saveImage(Long id, MultipartFile file) throws IOException {
 		Movie movie = getById(id);
+		if (file == null || file.isEmpty()) {
+			throw new IOException("Slika nije poslata ili je prazna");
+		}
 
 		// Napravi folder ako ne postoji
 		Path uploadPath = Paths.get(UPLOAD_DIR);
@@ -97,6 +103,9 @@ public class MovieService {
 		String extension = "";
 		if (originalName != null && originalName.contains(".")) {
 			extension = originalName.substring(originalName.lastIndexOf("."));
+		}
+		if (extension.isEmpty()) {
+			extension = ".jpg";
 		}
 		String filename = "movie_" + id + extension;
 
