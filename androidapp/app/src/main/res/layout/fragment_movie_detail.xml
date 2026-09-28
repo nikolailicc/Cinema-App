@@ -76,7 +76,6 @@
 
         </LinearLayout>
 
-        <!-- Admin akcije -->
         <LinearLayout
             android:id="@+id/adminActions"
             android:layout_width="match_parent"

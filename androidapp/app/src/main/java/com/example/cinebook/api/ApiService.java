@@ -19,20 +19,14 @@ import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
-/**
- * Definicija svih REST poziva prema RIS Movies API backendu.
- * Autentifikacija je Basic Auth i dodaje se kroz AuthInterceptor (vidi RetrofitClient).
- */
 public interface ApiService {
 
-    // ---- AUTH ----
     @POST("auth/register")
-    Call<Object> register(@Body Map<String, String> body);
+    Call<Void> register(@Body Map<String, String> body);
 
     @GET("auth/me")
     Call<User> me();
 
-    // ---- MOVIES ----
     @GET("movies")
     Call<List<Movie>> getAllMovies();
 
@@ -52,7 +46,6 @@ public interface ApiService {
     @POST("movies/{id}/image")
     Call<Movie> uploadImage(@Path("id") long id, @Part MultipartBody.Part file);
 
-    // ---- WATCHLIST ----
     @GET("watchlist")
     Call<List<WatchlistEntry>> getMyWatchlist();
 
@@ -60,9 +53,8 @@ public interface ApiService {
     Call<Object> addToWatchlist(@Path("movieId") long movieId, @Body Map<String, String> body);
 
     @DELETE("watchlist/{movieId}")
-    Call<Object> removeFromWatchlist(@Path("movieId") long movieId);
+    Call<Void> removeFromWatchlist(@Path("movieId") long movieId);
 
-    // ---- RESERVATIONS ----
     @POST("reservations")
     Call<Reservation> createReservation(@Body Map<String, Integer> body);
 
@@ -70,18 +62,14 @@ public interface ApiService {
     Call<List<Reservation>> getMyReservations();
 
     @DELETE("reservations/{id}")
-    Call<Object> deleteReservation(@Path("id") long id);
+    Call<Void> deleteReservation(@Path("id") long id);
 
-    // ---- RATINGS ----
     @GET("ratings/{movieId}")
     Call<Map<String, Object>> getRating(@Path("movieId") long movieId);
 
     @POST("ratings/{movieId}")
     Call<Object> rateMovie(@Path("movieId") long movieId, @Body Map<String, Integer> body);
 
-    // ---- COMMENTS ----
-    // Tacna struktura elementa nije definisana u swaggeru (Object), pa se parsira
-    // kao generic Map da bismo bezbedno izvukli tekst i autora bez obzira na imena polja.
     @GET("comments/{movieId}")
     Call<List<Map<String, Object>>> getComments(@Path("movieId") long movieId);
 
@@ -89,9 +77,8 @@ public interface ApiService {
     Call<Object> addComment(@Path("movieId") long movieId, @Body Map<String, String> body);
 
     @DELETE("comments/{commentId}")
-    Call<Object> deleteComment(@Path("commentId") long commentId);
+    Call<Void> deleteComment(@Path("commentId") long commentId);
 
-    // ---- USERS (admin) ----
     @GET("users")
     Call<List<User>> getAllUsers();
 

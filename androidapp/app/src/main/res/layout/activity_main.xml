@@ -16,7 +16,6 @@
         app:titleTextColor="@color/white"
         app:title="@string/movies" />
 
-    <!-- Telefon: samo jedan kontejner - lista filmova. Klik na film otvara MovieDetailActivity. -->
     <FrameLayout
         android:id="@+id/list_container"
         android:layout_width="match_parent"

@@ -158,7 +158,6 @@ public class MovieDetailFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                // Tiho ignorisemo - ocena nije kriticna za prikaz filma
             }
         });
     }
@@ -228,15 +227,19 @@ public class MovieDetailFragment extends Fragment {
         ApiService api = RetrofitClient.getApiService(requireContext());
 
         if (inWatchlist) {
-            api.removeFromWatchlist(movie.getId()).enqueue(new Callback<Object>() {
+            api.removeFromWatchlist(movie.getId()).enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<Object> call, Response<Object> response) {
-                    localStore.remove(movie.getId());
-                    btnWatchlist.setText(R.string.add_to_watchlist);
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        localStore.remove(movie.getId());
+                        btnWatchlist.setText(R.string.add_to_watchlist);
+                    } else {
+                        Toast.makeText(requireContext(), "Greška pri uklanjanju iz favorites", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<Object> call, Throwable t) {
+                public void onFailure(Call<Void> call, Throwable t) {
                     Toast.makeText(requireContext(), "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -289,7 +292,6 @@ public class MovieDetailFragment extends Fragment {
                     Reservation reservation = response.body();
                     Toast.makeText(requireContext(), R.string.reservation_created, Toast.LENGTH_SHORT).show();
 
-                    // Zakazivanje notifikacije - podsetnik na dan prikazivanja filma
                     if (reservation.getId() != null) {
                         ReminderScheduler.scheduleReminder(requireContext(),
                                 reservation.getId(), movie.getTitle(), movie.getScreeningDate());

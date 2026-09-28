@@ -58,7 +58,6 @@ public class WatchlistService {
         return result;
     }
 
-    // Za admin statistiku — broj watchlist po statusu
     public Map<String, Long> getWatchlistStats() {
         List<WatchlistItem> all = watchlistRepository.findAll();
         Map<String, Long> stats = new HashMap<>();

@@ -2,7 +2,6 @@ package com.example.cinebook.model;
 
 import java.io.Serializable;
 
-/** Odgovara "Reservation" semi: id, user, movie, numberOfTickets, reservationDate (date-time) */
 public class Reservation implements Serializable {
 
     private Long id;

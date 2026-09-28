@@ -55,7 +55,6 @@ public class MovieController {
         return ResponseEntity.noContent().build();
     }
 
-    // Upload slike za film
     @PostMapping("/{id}/image")
     public ResponseEntity<?> uploadImage(@PathVariable Long id,
                                          @RequestParam("file") MultipartFile file) throws IOException {

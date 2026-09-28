@@ -5,10 +5,6 @@ import android.content.SharedPreferences;
 
 import com.example.cinebook.model.User;
 
-/**
- * Cuva Basic Auth kredencijale i podatke o ulogovanom korisniku lokalno (SharedPreferences),
- * da se korisnik ne bi prijavljivao svaki put kad otvori aplikaciju.
- */
 public class SessionManager {
 
     private static final String PREFS_NAME = "cinebook_session";

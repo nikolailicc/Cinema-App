@@ -29,11 +29,9 @@ public class StatsController {
     public ResponseEntity<?> getStats() {
         Map<String, Object> stats = new HashMap<>();
 
-        // Ukupan broj filmova i rezervacija
         stats.put("totalMovies", movieRepository.count());
         stats.put("totalReservations", reservationRepository.count());
 
-        // Rezervacije po danu (zadnjih 7 dana)
         List<Object[]> resByDay = reservationRepository.countReservationsByDay();
         List<Map<String, Object>> reservationsByDay = new ArrayList<>();
         for (Object[] row : resByDay) {
@@ -44,7 +42,6 @@ public class StatsController {
         }
         stats.put("reservationsByDay", reservationsByDay);
 
-        // Prosječna ocjena po žanru
         List<Object[]> ratingsByGenre = ratingService.getAverageRatingByGenre();
         List<Map<String, Object>> ratingsData = new ArrayList<>();
         for (Object[] row : ratingsByGenre) {
@@ -55,7 +52,6 @@ public class StatsController {
         }
         stats.put("ratingsByGenre", ratingsData);
 
-        // Watchlist statistika
         stats.put("watchlistStats", watchlistService.getWatchlistStats());
 
         return ResponseEntity.ok(stats);

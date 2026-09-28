@@ -11,17 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.cinebook.R;
 
-/**
- * Aplikacija je vezana za jedan bioskop, pa mapa prikazuje samo tu jednu (fiksnu) lokaciju.
- * Mapa je implementirana preko Leaflet.js (OpenStreetMap) unutar WebView-a - ne zahteva
- * Google Play Services niti API kljuc, samo internet konekciju za ucitavanje tile-ova.
- * HTML/JS stranica se nalazi u app/src/main/assets/map.html.
- */
 public class CinemaMapActivity extends AppCompatActivity {
 
-    // Koordinate bioskopa - moraju biti iste kao u assets/map.html
     private static final double CINEMA_LAT = 44.8206;
-    private static final double CINEMA_LNG = 20.4587; // Beograd centar
+    private static final double CINEMA_LNG = 20.4587;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +34,6 @@ public class CinemaMapActivity extends AppCompatActivity {
    }
 
     private void openNavigation() {
-        // "geo:" URI otvara podrazumevanu (bilo koju instaliranu) navigacionu aplikaciju
         Uri geoUri = Uri.parse("geo:" + CINEMA_LAT + "," + CINEMA_LNG
                 + "?q=" + CINEMA_LAT + "," + CINEMA_LNG + "(" + getString(R.string.cinema_name) + ")");
         Intent intent = new Intent(Intent.ACTION_VIEW, geoUri);
@@ -49,7 +41,6 @@ public class CinemaMapActivity extends AppCompatActivity {
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         } else {
-            // Nijedna mapa aplikacija nije instalirana - otvori rutu na OpenStreetMap u browseru
             Uri browserUri = Uri.parse("https://www.openstreetmap.org/directions?to="
                     + CINEMA_LAT + "%2C" + CINEMA_LNG);
             startActivity(new Intent(Intent.ACTION_VIEW, browserUri));

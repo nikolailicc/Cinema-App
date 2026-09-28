@@ -63,7 +63,6 @@ public class MovieService {
 	public void delete(Long id) {
 		Movie movie = getById(id);
 
-		// Prvo obrisi sve zavisne zapise (foreign key constraint)
 		ratingRepository.deleteByMovie(movie);
 		commentRepository.deleteByMovie(movie);
 		reservationRepository.deleteByMovie(movie);
@@ -85,11 +84,9 @@ public class MovieService {
 			throw new IOException("Slika nije poslata ili je prazna");
 		}
 
-		// Napravi folder ako ne postoji
 		Path uploadPath = Paths.get(UPLOAD_DIR);
 		Files.createDirectories(uploadPath);
 
-		// Obrisi staru sliku ako postoji
 		if (movie.getImageUrl() != null) {
 			try {
 				Path oldImage = Paths.get(movie.getImageUrl().substring(1));
@@ -98,7 +95,6 @@ public class MovieService {
 			}
 		}
 
-		// Sacuvaj novu sliku: movie_ID.ext
 		String originalName = file.getOriginalFilename();
 		String extension = "";
 		if (originalName != null && originalName.contains(".")) {

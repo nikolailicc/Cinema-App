@@ -16,16 +16,15 @@ public class Movie {
 
     private String description;
 
-    private int duration; // u minutima
+    private int duration;
 
     private String genre;
 
-    private LocalDate screeningDate; // datum prikazivanja
+    private LocalDate screeningDate;
 
     @Column(length = 500)
-    private String imageUrl; // putanja do slike filma
+    private String imageUrl;
 
-    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

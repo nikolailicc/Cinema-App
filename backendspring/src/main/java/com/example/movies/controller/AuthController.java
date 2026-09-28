@@ -3,6 +3,8 @@ package com.example.movies.controller;
 import com.example.movies.model.User;
 import com.example.movies.service.UserService;
 import com.example.movies.repository.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,6 @@ public class AuthController {
         this.userRepository = userRepository;
     }
 
-    // Javna registracija - uvijek kreira USER rolu
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
         String username = body.get("username");
@@ -32,19 +33,20 @@ public class AuthController {
         }
 
         if (userRepository.findByUsername(username).isPresent()) {
-            return ResponseEntity.badRequest().body("Korisničko ime već postoji.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Korisničko ime već postoji.");
         }
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        user.setRole("USER"); // registracija uvijek daje USER rolu
+        user.setRole("USER");
         userService.create(user);
 
-        return ResponseEntity.ok("Registracija uspješna.");
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(Map.of("message", "Registracija uspešna."));
     }
 
-    // Vraća podatke trenutno ulogovanog korisnika
     @GetMapping("/me")
     public ResponseEntity<?> me(Authentication auth) {
         return userRepository.findByUsername(auth.getName())

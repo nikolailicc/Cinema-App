@@ -30,18 +30,15 @@
         <activity android:name=".ui.MyReservationsActivity" android:exported="false" />
         <activity android:name=".ui.CinemaMapActivity" android:exported="false" />
 
-        <!-- Content provider za lokalni (offline) watchlist -->
         <provider
             android:name=".provider.WatchlistProvider"
             android:authorities="com.example.cinebook.provider"
             android:exported="false" />
 
-        <!-- Broadcast receiver koji prikazuje notifikaciju kad alarm okine -->
         <receiver
             android:name=".notification.ReservationReminderReceiver"
             android:exported="false" />
 
-        <!-- Ponovno zakazivanje alarma nakon restarta uredjaja -->
         <receiver
             android:name=".notification.BootReceiver"
             android:exported="true">

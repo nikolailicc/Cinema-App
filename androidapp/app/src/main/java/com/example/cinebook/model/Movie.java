@@ -2,10 +2,6 @@ package com.example.cinebook.model;
 
 import java.io.Serializable;
 
-/**
- * Odgovara "Movie" semi iz backend Swagger-a:
- * id, title, description, duration, genre, screeningDate (yyyy-MM-dd), imageUrl
- */
 public class Movie implements Serializable {
 
     private Long id;

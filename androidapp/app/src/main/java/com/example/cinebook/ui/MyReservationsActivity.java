@@ -72,18 +72,22 @@ public class MyReservationsActivity extends AppCompatActivity implements Reserva
     @Override
     public void onDelete(Reservation reservation) {
         ApiService api = RetrofitClient.getApiService(this);
-        api.deleteReservation(reservation.getId()).enqueue(new Callback<Object>() {
+        api.deleteReservation(reservation.getId()).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
-                if (reservation.getId() != null) {
-                    ReminderScheduler.cancelReminder(MyReservationsActivity.this, reservation.getId());
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    if (reservation.getId() != null) {
+                        ReminderScheduler.cancelReminder(MyReservationsActivity.this, reservation.getId());
+                    }
+                    Toast.makeText(MyReservationsActivity.this, "Rezervacija otkazana", Toast.LENGTH_SHORT).show();
+                    loadReservations();
+                } else {
+                    Toast.makeText(MyReservationsActivity.this, "Greška pri otkazivanju rezervacije", Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(MyReservationsActivity.this, "Rezervacija otkazana", Toast.LENGTH_SHORT).show();
-                loadReservations();
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(MyReservationsActivity.this, "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

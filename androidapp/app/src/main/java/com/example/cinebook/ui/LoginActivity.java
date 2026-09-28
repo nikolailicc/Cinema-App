@@ -18,6 +18,7 @@ import com.example.cinebook.api.RetrofitClient;
 import com.example.cinebook.model.User;
 import com.example.cinebook.util.SessionManager;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Privremeno cuvamo kredencijale da bi ih AuthInterceptor mogao da koristi
         session.saveSession(username, password, "USER");
 
         setLoading(true);
@@ -116,9 +116,9 @@ public class LoginActivity extends AppCompatActivity {
         body.put("password", password);
 
         ApiService api = RetrofitClient.getApiService(this);
-        api.register(body).enqueue(new Callback<Object>() {
+        api.register(body).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Object> call, Response<Object> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 setLoading(false);
                 if (response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Registracija uspešna, prijavite se", Toast.LENGTH_SHORT).show();
@@ -126,12 +126,29 @@ public class LoginActivity extends AppCompatActivity {
                     btnLogin.setText(R.string.login);
                     btnToggleRegister.setText(R.string.no_account);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Registracija nije uspela", Toast.LENGTH_SHORT).show();
+                    String message = "Registracija nije uspela (HTTP " + response.code() + ")";
+                    if (response.errorBody() != null) {
+                        try {
+                            String serverMessage = response.errorBody().string().trim();
+                            if (!serverMessage.isEmpty()) {
+                                message = serverMessage;
+                            }
+                        } catch (IOException ignored) {
+                        }
+                    }
+                    if (message.startsWith("Registracija nije uspela")) {
+                        if (response.code() == 409 || response.code() == 400) {
+                            message = "Korisničko ime već postoji ili podaci nisu ispravni";
+                        } else if (response.code() == 401) {
+                            message = "Backend nije prihvatio zahtev za registraciju";
+                        }
+                    }
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Object> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 setLoading(false);
                 Toast.makeText(LoginActivity.this, "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }

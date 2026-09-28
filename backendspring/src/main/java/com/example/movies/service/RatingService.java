@@ -20,7 +20,7 @@ public class RatingService {
     }
 
     public Rating rateMovie(String username, Long movieId, int stars) {
-        if (stars < 1 || stars > 5) throw new RuntimeException("Ocjena mora biti između 1 i 5");
+        if (stars < 1 || stars > 5) throw new RuntimeException("Ocena mora biti između 1 i 5");
         User user = userRepository.findByUsername(username).orElseThrow();
         Movie movie = movieRepository.findById(movieId).orElseThrow();
 
@@ -50,7 +50,6 @@ public class RatingService {
         return result;
     }
 
-    // Za admin statistiku
     public List<Object[]> getAverageRatingByGenre() {
         return ratingRepository.findAverageRatingByGenre();
     }

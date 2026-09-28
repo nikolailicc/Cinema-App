@@ -14,11 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Buduci da backend ne definise tacnu semu za komentar (Object u swaggeru),
- * adapter radi sa generickom Map<String,Object> strukturom i sam "pogadja"
- * koje polje predstavlja tekst, a koje autora.
- */
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
 
     private List<Map<String, Object>> comments = new ArrayList<>();

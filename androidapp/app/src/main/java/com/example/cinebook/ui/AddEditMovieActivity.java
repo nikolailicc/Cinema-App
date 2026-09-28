@@ -22,6 +22,8 @@ import com.example.cinebook.api.RetrofitClient;
 import com.example.cinebook.background.ImageUploadTask;
 import com.example.cinebook.model.Movie;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,7 +37,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
     private ProgressBar progressUpload;
     private Button btnPickImage, btnSave;
 
-    private Movie movie; // null ako je ovo kreiranje novog filma
+    private Movie movie;
     private Uri pickedImageUri;
 
     private final ActivityResultLauncher<String> imagePickerLauncher =
@@ -100,6 +102,12 @@ public class AddEditMovieActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.empty_field_error, Toast.LENGTH_SHORT).show();
             return;
         }
+        try {
+            java.time.LocalDate.parse(screeningDate);
+        } catch (java.time.format.DateTimeParseException e) {
+            editScreeningDate.setError("Format datuma: yyyy-MM-dd");
+            return;
+        }
 
         Movie payload = movie != null ? movie : new Movie();
         payload.setTitle(title);
@@ -130,7 +138,17 @@ public class AddEditMovieActivity extends AppCompatActivity {
                         finish();
                     }
                 } else {
-                    Toast.makeText(AddEditMovieActivity.this, "Greška pri čuvanju filma", Toast.LENGTH_SHORT).show();
+                    String details = "HTTP " + response.code();
+                    if (response.errorBody() != null) {
+                        try {
+                            String serverMessage = response.errorBody().string().trim();
+                            if (!serverMessage.isEmpty()) {
+                                details += ": " + serverMessage;
+                            }
+                        } catch (IOException ignored) {
+                        }
+                    }
+                    Toast.makeText(AddEditMovieActivity.this, "Greška pri čuvanju filma: " + details, Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -141,10 +159,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Upload slike se izvrsava u pozadinskom thread-u (ImageUploadTask/ExecutorService),
-     * kako dugotrajno kopiranje/slanje fajla ne bi blokiralo UI thread.
-     */
     private void uploadImage(long movieId) {
         new ImageUploadTask().upload(this, movieId, pickedImageUri, new ImageUploadTask.UploadCallback() {
             @Override

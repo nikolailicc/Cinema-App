@@ -3,9 +3,6 @@ package com.example.cinebook.provider;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-/**
- * Definise strukturu tabele i URI-jeve za WatchlistProvider (lokalni offline watchlist).
- */
 public final class WatchlistContract {
 
     public static final String AUTHORITY = "com.example.cinebook.provider";

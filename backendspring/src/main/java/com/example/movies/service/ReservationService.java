@@ -45,7 +45,6 @@ public class ReservationService {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new RuntimeException("Rezervacija nije pronađena"));
 
-        // Korisnik može obrisati samo svoju rezervaciju
         if (!reservation.getUser().getUsername().equals(username)) {
             throw new RuntimeException("Nemate dozvolu za brisanje ove rezervacije");
         }

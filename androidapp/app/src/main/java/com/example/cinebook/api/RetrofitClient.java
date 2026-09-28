@@ -44,7 +44,8 @@ public class RetrofitClient {
 
                 String username = session.getUsername();
                 String password = session.getPassword();
-                if (username != null && password != null) {
+                boolean isPublicRegistration = original.url().encodedPath().equals("/auth/register");
+                if (!isPublicRegistration && username != null && password != null) {
                     String credentials = username + ":" + password;
                     String basic = "Basic " + Base64.encodeToString(
                             credentials.getBytes(StandardCharsets.UTF_8), Base64.NO_WRAP);

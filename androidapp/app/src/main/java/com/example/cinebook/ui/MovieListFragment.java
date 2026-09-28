@@ -30,10 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Prikazuje listu svih filmova sa backenda. Koristi se i na telefonu (jedini panel)
- * i na tabletu (levi panel u master-detail rasporedu).
- */
 public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieClickListener {
 
     public interface MovieSelectionListener {
@@ -117,15 +113,19 @@ public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieC
     public void onWatchlistToggle(Movie movie, boolean currentlyInWatchlist) {
         ApiService api = RetrofitClient.getApiService(requireContext());
         if (currentlyInWatchlist) {
-            api.removeFromWatchlist(movie.getId()).enqueue(new Callback<Object>() {
+            api.removeFromWatchlist(movie.getId()).enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<Object> call, Response<Object> response) {
-                    localStore.remove(movie.getId());
-                    adapter.notifyDataSetChanged();
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        localStore.remove(movie.getId());
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(requireContext(), "Greška pri uklanjanju iz favorites", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<Object> call, Throwable t) {
+                public void onFailure(Call<Void> call, Throwable t) {
                     Toast.makeText(requireContext(), "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

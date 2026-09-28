@@ -13,10 +13,6 @@ import com.example.cinebook.util.SessionManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Jednostavan "wrapper" oko WatchlistProvider-a - koristi se iz Activity/Fragment-a
- * umesto da se direktno radi sa ContentResolver-om na svakom mestu.
- */
 public class WatchlistLocalStore {
 
     private final ContentResolver resolver;

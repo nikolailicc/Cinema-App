@@ -20,17 +20,12 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Demonstrira rad sa "dugotrajnim" akcijama u pozadinskom thread-u:
- * kopiranje fajla sa uredjaja + slanje na server se izvrsava van glavnog (UI) thread-a
- * preko ExecutorService-a, a rezultat se vraca na UI thread preko Handler-a.
- */
 public class ImageUploadTask {
 
     public interface UploadCallback {
+
         void onStart();
 
         void onSuccess(Movie updatedMovie);
@@ -46,14 +41,11 @@ public class ImageUploadTask {
 
         EXECUTOR.execute(() -> {
             try {
-                // 1) Kopiranje sadrzaja iz Uri-ja u privremeni fajl (moze potrajati za velike slike)
                 File tempFile = copyUriToTempFile(context, imageUri);
 
-                // 2) Priprema multipart tela zahteva
                 RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), tempFile);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("file", tempFile.getName(), requestFile);
 
-                // 3) Sinhroni Retrofit poziv - bezbedan jer smo vec u pozadinskom thread-u
                 ApiService api = RetrofitClient.getApiService(context);
                 Call<Movie> call = api.uploadImage(movieId, body);
                 Response<Movie> response = call.execute();

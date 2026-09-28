@@ -13,12 +13,6 @@ import androidx.annotation.Nullable;
 
 import com.example.cinebook.provider.WatchlistContract.Entry;
 
-/**
- * Content Provider koji lokalno (offline) cuva filmove dodate na watchlist.
- * Kada korisnik doda/ukloni film sa watchlist-e (REST poziv ka backendu),
- * app istovremeno azurira i ovaj lokalni provider, tako da se watchlist
- * moze pregledati i bez internet konekcije.
- */
 public class WatchlistProvider extends ContentProvider {
 
     private static final int WATCHLIST = 1;

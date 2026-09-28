@@ -2,7 +2,6 @@ package com.example.cinebook.model;
 
 import java.io.Serializable;
 
-/** Odgovara "User" semi: id, username, password, role */
 public class User implements Serializable {
 
     private Long id;

@@ -9,7 +9,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Servira uploadovane slike iz ./uploads/ foldera
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:uploads/");
     }

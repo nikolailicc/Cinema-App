@@ -50,7 +50,6 @@ public class CommentService {
     public void deleteComment(Long commentId, String username) {
         Comment comment = commentRepository.findById(commentId).orElseThrow();
         User user = userRepository.findByUsername(username).orElseThrow();
-        // Može brisati autor ili admin
         if (!comment.getUser().getUsername().equals(username) && !user.getRole().equals("ADMIN")) {
             throw new RuntimeException("Nemate dozvolu");
         }

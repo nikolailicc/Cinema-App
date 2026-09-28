@@ -22,7 +22,7 @@ public class WatchlistItem {
     private Movie movie;
 
     @Column(nullable = false)
-    private String status; // "WANT_TO_WATCH", "WATCHED", "DROPPED"
+    private String status;
 
     @Column(nullable = false)
     private LocalDateTime addedAt;

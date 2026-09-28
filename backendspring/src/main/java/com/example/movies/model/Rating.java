@@ -22,7 +22,7 @@ public class Rating {
     private Movie movie;
 
     @Column(nullable = false)
-    private int stars; // 1-5
+    private int stars;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

@@ -13,11 +13,6 @@ import com.example.cinebook.R;
 import com.example.cinebook.model.Movie;
 import com.example.cinebook.util.SessionManager;
 
-/**
- * Glavna Activity. Ako layout ima "detail_container" (sw600dp / tablet), radi se
- * o master-detail rasporedu i detalji filma se prikazuju u drugom panelu iste Activity.
- * Na telefonu detail_container ne postoji, pa se detalji otvaraju u posebnoj Activity-ju.
- */
 public class MainActivity extends AppCompatActivity implements MovieListFragment.MovieSelectionListener {
 
     private boolean isTabletLayout;
@@ -89,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
     @Override
     protected void onResume() {
         super.onResume();
-        // Osvezi listu (npr. nakon dodavanja/izmene filma ili promene watchlist-e)
         MovieListFragment fragment = (MovieListFragment) getSupportFragmentManager().findFragmentByTag("list");
         if (fragment != null) {
             fragment.loadMovies();

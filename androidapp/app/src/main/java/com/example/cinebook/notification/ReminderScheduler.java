@@ -11,10 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * Koristi AlarmManager da zakaze notifikaciju - podsetnik korisniku da mu film
- * pocinje na dan prikazivanja (screeningDate). Alarm se okida u 9h ujutru na taj dan.
- */
 public class ReminderScheduler {
 
     public static void scheduleReminder(Context context, long reservationId, String movieTitle, String screeningDateYmd) {
@@ -26,7 +22,6 @@ public class ReminderScheduler {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
 
-            // Ako je datum prikazivanja vec prosao, ne zakazujemo alarm
             if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
                 return;
             }

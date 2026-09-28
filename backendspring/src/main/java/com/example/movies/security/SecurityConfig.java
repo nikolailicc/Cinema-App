@@ -46,7 +46,6 @@ public class SecurityConfig {
         };
     }
 
-    // ── Jedan lanac za cijeli REST API ────────────────────────
     @Bean
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
@@ -55,13 +54,11 @@ public class SecurityConfig {
             .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .httpBasic(basic -> {})
             .authorizeHttpRequests(auth -> auth
-                // Swagger / OpenAPI dokumentacija — javno dostupna
                 .requestMatchers(
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html"
                 ).permitAll()
-                // Statičke uploadovane slike su javno dostupne
                 .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                 .requestMatchers(HttpMethod.GET, "/auth/me").authenticated()
@@ -73,7 +70,6 @@ public class SecurityConfig {
                 .requestMatchers("/reservations/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/users/**").hasRole("ADMIN")
-                // ── Watchlist, Ratings, Comments ──────────────────────────────
                 .requestMatchers("/watchlist/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/ratings/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/comments/**").hasAnyRole("USER", "ADMIN")
@@ -85,11 +81,9 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // ── CORS konfiguracija za odvojeni frontend (SPA) ─────────
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Prilagodi listu origina adresi na kojoj se hostuje frontend aplikacija
         configuration.setAllowedOriginPatterns(List.of("http://localhost:*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
