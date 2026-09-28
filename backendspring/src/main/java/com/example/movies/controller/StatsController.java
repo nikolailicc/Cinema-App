@@ -1,12 +1,19 @@
 package com.example.movies.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.example.movies.repository.MovieRepository;
 import com.example.movies.repository.ReservationRepository;
 import com.example.movies.service.RatingService;
 import com.example.movies.service.WatchlistService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.*;
 
 @RestController
 @RequestMapping("/stats")

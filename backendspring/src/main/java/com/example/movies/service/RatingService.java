@@ -1,10 +1,18 @@
 package com.example.movies.service;
 
-import com.example.movies.model.*;
-import com.example.movies.repository.*;
-import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.example.movies.model.Movie;
+import com.example.movies.model.Rating;
+import com.example.movies.model.User;
+import com.example.movies.repository.MovieRepository;
+import com.example.movies.repository.RatingRepository;
+import com.example.movies.repository.UserRepository;
 
 @Service
 public class RatingService {
