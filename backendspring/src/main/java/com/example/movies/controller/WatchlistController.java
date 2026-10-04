@@ -33,4 +33,21 @@ public class WatchlistController {
         watchlistService.remove(auth.getName(), movieId);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/favorites")
+    public ResponseEntity<?> getFavorites(Authentication auth) {
+        return ResponseEntity.ok(watchlistService.getFavorites(auth.getName()));
+    }
+
+    @PostMapping("/favorites/{movieId}")
+    public ResponseEntity<Void> addFavorite(@PathVariable Long movieId, Authentication auth) {
+        watchlistService.addFavorite(auth.getName(), movieId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/favorites/{movieId}")
+    public ResponseEntity<?> removeFavorite(@PathVariable Long movieId, Authentication auth) {
+        watchlistService.removeFavorite(auth.getName(), movieId);
+        return ResponseEntity.ok().build();
+    }
 }

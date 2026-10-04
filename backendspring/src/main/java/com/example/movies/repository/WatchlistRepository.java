@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface WatchlistRepository extends JpaRepository<WatchlistItem, Long> {
     List<WatchlistItem> findByUser(User user);
     Optional<WatchlistItem> findByUserAndMovie(User user, Movie movie);
+    Optional<WatchlistItem> findByUserAndMovieAndListType(User user, Movie movie, String listType);
+    List<WatchlistItem> findByUserAndListType(User user, String listType);
     boolean existsByUserAndMovie(User user, Movie movie);
     void deleteByMovie(Movie movie);
 }

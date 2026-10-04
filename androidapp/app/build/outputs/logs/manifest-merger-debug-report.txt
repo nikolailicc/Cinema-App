@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-55:12
-INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-55:12
-INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-55:12
-INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-55:12
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:2:1-56:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\USER\.gradle\caches\transforms-3\375d77e3bac5523f6a4d9c17a7b2806c\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\USER\.gradle\caches\transforms-3\4986230a3613e9c8878387b9e002f926\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\USER\.gradle\caches\transforms-3\e27fb5200da26533242d35fada05a7af\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -66,21 +66,29 @@ uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:5:5-79
 	android:name
 		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:5:22-76
-uses-permission#android.permission.POST_NOTIFICATIONS
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:6:5-77
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:6:5-81
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:6:22-74
-uses-permission#android.permission.SCHEDULE_EXACT_ALARM
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:6:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
 ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:7:5-79
 	android:name
 		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:7:22-76
-uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:8:5-81
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:8:5-77
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:8:22-78
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:8:22-74
+uses-permission#android.permission.SCHEDULE_EXACT_ALARM
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:9:22-76
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:10:22-78
 application
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:10:5-53:19
-INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:10:5-53:19
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:12:5-54:19
+INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:12:5-54:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\USER\.gradle\caches\transforms-3\375d77e3bac5523f6a4d9c17a7b2806c\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\USER\.gradle\caches\transforms-3\375d77e3bac5523f6a4d9c17a7b2806c\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\USER\.gradle\caches\transforms-3\4986230a3613e9c8878387b9e002f926\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -102,89 +110,101 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\USER\.gradle\cache
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.9.0] C:\Users\USER\.gradle\caches\transforms-3\761d68ccdd62ecb8703967694e2fec50\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 	android:label
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:14:9-41
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:16:9-41
 	android:icon
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:13:9-45
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:15:9-45
 	android:allowBackup
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:15:9-46
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:17:9-46
 	android:usesCleartextTraffic
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:16:9-44
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:18:9-44
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:11:9-36
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:13:9-36
 activity#com.example.cinebook.ui.LoginActivity
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:18:9-25:20
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:20:9-27:20
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:20:13-36
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:22:13-36
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:19:13-45
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:21:13-45
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:21:13-24:29
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:23:13-26:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:24:17-69
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:24:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:25:17-77
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:25:27-74
 activity#com.example.cinebook.ui.MainActivity
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:27:9-78
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:29:9-78
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:27:51-75
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:29:51-75
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:27:19-50
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:29:19-50
 activity#com.example.cinebook.ui.MovieDetailActivity
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:28:9-85
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:30:9-85
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:28:58-82
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:30:58-82
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:28:19-57
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:30:19-57
 activity#com.example.cinebook.ui.AddEditMovieActivity
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:29:9-86
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:31:9-86
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:29:59-83
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:31:59-83
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:29:19-58
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:31:19-58
 activity#com.example.cinebook.ui.MyReservationsActivity
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:30:9-88
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:32:9-88
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:30:61-85
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:32:61-85
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:30:19-60
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:32:19-60
 activity#com.example.cinebook.ui.CinemaMapActivity
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:31:9-83
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:33:9-83
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:31:56-80
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:33:56-80
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:31:19-55
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:33:19-55
+activity#com.example.cinebook.ui.CinemaSettingsActivity
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:34:9-88
+	android:exported
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:34:61-85
+	android:name
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:34:19-60
+activity#com.example.cinebook.ui.CollectionActivity
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:35:9-84
+	android:exported
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:35:57-81
+	android:name
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:35:19-56
 provider#com.example.cinebook.provider.WatchlistProvider
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:34:9-37:40
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:37:9-40:40
 	android:authorities
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:36:13-64
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:39:13-64
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:37:13-37
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:40:13-37
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:35:13-55
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:38:13-55
 receiver#com.example.cinebook.notification.ReservationReminderReceiver
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:40:9-42:40
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:42:9-44:40
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:42:13-37
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:44:13-37
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:41:13-69
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:43:13-69
 receiver#com.example.cinebook.notification.BootReceiver
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:45:9-51:20
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:46:9-52:20
 	android:exported
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:47:13-36
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:48:13-36
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:46:13-54
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:47:13-54
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:48:13-50:29
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:49:13-51:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:49:17-79
+ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:50:17-79
 	android:name
-		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:49:25-76
+		ADDED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml:50:25-76
 uses-sdk
 INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\USER\Desktop\android\androidapp\app\src\main\AndroidManifest.xml

@@ -4,6 +4,7 @@ import com.example.cinebook.model.Movie;
 import com.example.cinebook.model.Reservation;
 import com.example.cinebook.model.User;
 import com.example.cinebook.model.WatchlistEntry;
+import com.example.cinebook.model.CinemaSettings;
 
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,21 @@ public interface ApiService {
 
     @DELETE("watchlist/{movieId}")
     Call<Void> removeFromWatchlist(@Path("movieId") long movieId);
+
+    @GET("watchlist/favorites")
+    Call<List<WatchlistEntry>> getMyFavorites();
+
+    @POST("watchlist/favorites/{movieId}")
+    Call<Void> addToFavorites(@Path("movieId") long movieId);
+
+    @DELETE("watchlist/favorites/{movieId}")
+    Call<Void> removeFromFavorites(@Path("movieId") long movieId);
+
+    @GET("cinema/settings")
+    Call<CinemaSettings> getCinemaSettings();
+
+    @PUT("cinema/settings")
+    Call<CinemaSettings> updateCinemaSettings(@Body CinemaSettings settings);
 
     @POST("reservations")
     Call<Reservation> createReservation(@Body Map<String, Integer> body);

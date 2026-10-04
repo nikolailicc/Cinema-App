@@ -42,6 +42,22 @@
       marker
         .bindPopup("<b>" + cinemaName + "</b><br>" + cinemaAddress)
         .openPopup();
+
+      var routeLayer;
+      function setCinema(lat, lng, name, address) {
+        cinemaLat = lat; cinemaLng = lng; cinemaName = name; cinemaAddress = address;
+        map.setView([lat, lng], 15);
+        marker.setLatLng([lat, lng]).bindPopup("<b>" + name + "</b><br>" + address);
+      }
+      function showRoute(fromLat, fromLng) {
+        fetch("https://router.project-osrm.org/route/v1/driving/" + fromLng + "," + fromLat + ";" + cinemaLng + "," + cinemaLat + "?overview=full&geometries=geojson")
+          .then(function(response) { return response.json(); })
+          .then(function(data) {
+            if (routeLayer) map.removeLayer(routeLayer);
+            routeLayer = L.geoJSON(data.routes[0].geometry, {color: "#e91e63", weight: 5}).addTo(map);
+            map.fitBounds(routeLayer.getBounds(), {padding: [20, 20]});
+          });
+      }
     </script>
   </body>
 </html>

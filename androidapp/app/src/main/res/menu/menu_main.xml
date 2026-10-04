@@ -18,6 +18,21 @@
         android:showAsAction="never" />
 
     <item
+        android:id="@+id/action_watchlist"
+        android:title="@string/watchlist"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_favorites"
+        android:title="@string/favorites"
+        android:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_cinema_settings"
+        android:title="@string/cinema_settings"
+        android:showAsAction="never" />
+
+    <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
         android:showAsAction="never" />

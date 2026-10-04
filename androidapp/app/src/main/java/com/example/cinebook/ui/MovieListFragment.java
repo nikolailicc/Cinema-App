@@ -25,6 +25,9 @@ import com.example.cinebook.ui.adapter.MovieAdapter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,6 +47,7 @@ public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieC
     private MovieAdapter adapter;
     private WatchlistLocalStore localStore;
     private MovieSelectionListener listener;
+    private final Set<Long> favoriteIds = new HashSet<>();
 
     public void setListener(MovieSelectionListener listener) {
         this.listener = listener;
@@ -67,7 +71,7 @@ public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieC
 
         localStore = new WatchlistLocalStore(requireContext());
 
-        adapter = new MovieAdapter(this, movieId -> localStore.isInWatchlist(movieId));
+        adapter = new MovieAdapter(this, movieId -> favoriteIds.contains(movieId));
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(adapter);
 
@@ -89,6 +93,7 @@ public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieC
                 if (response.isSuccessful() && response.body() != null) {
                     List<Movie> movies = response.body();
                     adapter.setMovies(movies);
+                    loadFavorites();
                     textEmpty.setVisibility(movies.isEmpty() ? View.VISIBLE : View.GONE);
                 } else {
                     Toast.makeText(requireContext(), "Greška pri učitavanju filmova", Toast.LENGTH_SHORT).show();
@@ -110,17 +115,17 @@ public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieC
     }
 
     @Override
-    public void onWatchlistToggle(Movie movie, boolean currentlyInWatchlist) {
+    public void onFavoriteToggle(Movie movie, boolean currentlyFavorite) {
         ApiService api = RetrofitClient.getApiService(requireContext());
-        if (currentlyInWatchlist) {
-            api.removeFromWatchlist(movie.getId()).enqueue(new Callback<Void>() {
+        if (currentlyFavorite) {
+            api.removeFromFavorites(movie.getId()).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.isSuccessful()) {
-                        localStore.remove(movie.getId());
+                        favoriteIds.remove(movie.getId());
                         adapter.notifyDataSetChanged();
                     } else {
-                        Toast.makeText(requireContext(), "Greška pri uklanjanju iz favorites", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Greška pri uklanjanju iz omiljenih", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -130,20 +135,54 @@ public class MovieListFragment extends Fragment implements MovieAdapter.OnMovieC
                 }
             });
         } else {
-            Map<String, String> body = new HashMap<>();
-            body.put("status", "PLANNED");
-            api.addToWatchlist(movie.getId(), body).enqueue(new Callback<Object>() {
+            api.addToFavorites(movie.getId()).enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(Call<Object> call, Response<Object> response) {
-                    localStore.add(movie);
-                    adapter.notifyDataSetChanged();
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+                        favoriteIds.add(movie.getId());
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(requireContext(), favoriteError(response), Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<Object> call, Throwable t) {
+                public void onFailure(Call<Void> call, Throwable t) {
                     Toast.makeText(requireContext(), "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
+    }
+
+    private String favoriteError(Response<Void> response) {
+        String message = "Greška pri dodavanju u omiljene (HTTP " + response.code() + ")";
+        if (response.errorBody() != null) {
+            try {
+                String body = response.errorBody().string().trim();
+                if (!body.isEmpty()) message += ": " + body;
+            } catch (IOException ignored) {
+            }
+        }
+        return message;
+    }
+
+    private void loadFavorites() {
+        RetrofitClient.getApiService(requireContext()).getMyFavorites().enqueue(new Callback<List<com.example.cinebook.model.WatchlistEntry>>() {
+            @Override public void onResponse(Call<List<com.example.cinebook.model.WatchlistEntry>> call,
+                                             Response<List<com.example.cinebook.model.WatchlistEntry>> response) {
+                favoriteIds.clear();
+                if (response.isSuccessful() && response.body() != null) {
+                    for (com.example.cinebook.model.WatchlistEntry entry : response.body()) {
+                        if (entry.getMovie() != null && entry.getMovie().getId() != null) {
+                            favoriteIds.add(entry.getMovie().getId());
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override public void onFailure(Call<List<com.example.cinebook.model.WatchlistEntry>> call, Throwable t) {
+                Toast.makeText(requireContext(), "Greške pri učitavanju omiljenih filmova", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

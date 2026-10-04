@@ -13,6 +13,16 @@
     <string name="cinema_location">Lokacija bioskopa</string>
     <string name="logout">Odjava</string>
     <string name="add_movie">Dodaj film</string>
+    <string name="favorites">Omiljeni filmovi</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="cinema_settings">Podešavanje bioskopa</string>
+    <string name="cinema_latitude">Geografska širina</string>
+    <string name="cinema_longitude">Geografska dužina</string>
+    <string name="route">Prikaži rutu od moje lokacije</string>
+    <string name="location_permission_required">Dozvola za lokaciju je potrebna za prikaz rute.</string>
+    <string name="favorite">Omiljeni</string>
+    <string name="add_to_favorites">Dodaj u omiljene</string>
+    <string name="remove_from_favorites">Ukloni iz omiljenih</string>
 
     <string name="reserve">Rezerviši</string>
     <string name="add_to_watchlist">Dodaj na watchlist</string>

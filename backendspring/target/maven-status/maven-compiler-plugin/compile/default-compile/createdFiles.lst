@@ -1,0 +1,4 @@
+com\example\movies\model\CinemaSettings.class
+com\example\movies\config\WatchlistSchemaMigration.class
+com\example\movies\repository\CinemaSettingsRepository.class
+com\example\movies\controller\CinemaSettingsController.class

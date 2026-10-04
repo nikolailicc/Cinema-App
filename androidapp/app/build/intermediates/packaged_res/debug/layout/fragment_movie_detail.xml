@@ -76,7 +76,13 @@
 
         </LinearLayout>
 
-        <!-- Admin akcije -->
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/add_to_favorites" />
+
         <LinearLayout
             android:id="@+id/adminActions"
             android:layout_width="match_parent"

@@ -73,6 +73,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/users/**").hasRole("ADMIN")
                 .requestMatchers("/watchlist/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.GET, "/cinema/settings").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/cinema/settings").hasRole("ADMIN")
                 .requestMatchers("/ratings/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/comments/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/reports/**").hasRole("ADMIN")

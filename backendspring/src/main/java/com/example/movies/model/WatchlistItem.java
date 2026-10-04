@@ -14,7 +14,7 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "watchlist", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"user_id", "movie_id"})
+    @UniqueConstraint(columnNames = {"user_id", "movie_id", "list_type"})
 })
 public class WatchlistItem {
 
@@ -34,6 +34,9 @@ public class WatchlistItem {
     private String status;
 
     @Column(nullable = false)
+    private String listType = "WATCHLIST";
+
+    @Column(nullable = false)
     private LocalDateTime addedAt;
 
     public Long getId() { return id; }
@@ -47,6 +50,9 @@ public class WatchlistItem {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public String getListType() { return listType; }
+    public void setListType(String listType) { this.listType = listType; }
 
     public LocalDateTime getAddedAt() { return addedAt; }
     public void setAddedAt(LocalDateTime addedAt) { this.addedAt = addedAt; }

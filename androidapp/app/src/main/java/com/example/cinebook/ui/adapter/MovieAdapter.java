@@ -22,7 +22,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public interface OnMovieClickListener {
         void onMovieClick(Movie movie);
 
-        void onWatchlistToggle(Movie movie, boolean currentlyInWatchlist);
+        void onFavoriteToggle(Movie movie, boolean currentlyFavorite);
     }
 
     private List<Movie> movies = new ArrayList<>();
@@ -30,7 +30,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     private final WatchlistChecker watchlistChecker;
 
     public interface WatchlistChecker {
-        boolean isInWatchlist(long movieId);
+        boolean isFavorite(long movieId);
     }
 
     public MovieAdapter(OnMovieClickListener listener, WatchlistChecker watchlistChecker) {
@@ -66,13 +66,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             holder.poster.setImageDrawable(null);
         }
 
-        boolean inWatchlist = watchlistChecker != null && watchlistChecker.isInWatchlist(movie.getId());
-        holder.watchlistIcon.setImageResource(inWatchlist
+        boolean favorite = watchlistChecker != null && watchlistChecker.isFavorite(movie.getId());
+        holder.watchlistIcon.setImageResource(favorite
                 ? android.R.drawable.btn_star_big_on
                 : android.R.drawable.btn_star_big_off);
 
         holder.itemView.setOnClickListener(v -> listener.onMovieClick(movie));
-        holder.watchlistIcon.setOnClickListener(v -> listener.onWatchlistToggle(movie, inWatchlist));
+        holder.watchlistIcon.setOnClickListener(v -> listener.onFavoriteToggle(movie, favorite));
     }
 
     @Override

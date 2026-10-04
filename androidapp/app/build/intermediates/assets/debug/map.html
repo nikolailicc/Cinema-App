@@ -1,34 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Cinema Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
     <style>
-        html, body, #map { height: 100%; margin: 0; padding: 0; }
+      html,
+      body,
+      #map {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Fiksna lokacija jedinog bioskopa (mora biti ista kao u CinemaMapActivity.java)
-        var cinemaLat = 44.8206;
-        var cinemaLng = 20.4587;
-        var cinemaName = "Bioskop \"Kolosej\" Beograd";
-        var cinemaAddress = "Karađorđeva 3, Beograd";
+      var cinemaLat = 44.8206;
+      var cinemaLng = 20.4587;
+      var cinemaName = 'Bioskop "Kolosej" Beograd';
+      var cinemaAddress = "Karađorđeva 3, Beograd";
 
-        var map = L.map('map').setView([cinemaLat, cinemaLng], 15);
+      var map = L.map("map").setView([cinemaLat, cinemaLng], 15);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
 
-        var marker = L.marker([cinemaLat, cinemaLng]).addTo(map);
-        marker.bindPopup("<b>" + cinemaName + "</b><br>" + cinemaAddress).openPopup();
+      var marker = L.marker([cinemaLat, cinemaLng]).addTo(map);
+      marker
+        .bindPopup("<b>" + cinemaName + "</b><br>" + cinemaAddress)
+        .openPopup();
+
+      var routeLayer;
+      function setCinema(lat, lng, name, address) {
+        cinemaLat = lat; cinemaLng = lng; cinemaName = name; cinemaAddress = address;
+        map.setView([lat, lng], 15);
+        marker.setLatLng([lat, lng]).bindPopup("<b>" + name + "</b><br>" + address);
+      }
+      function showRoute(fromLat, fromLng) {
+        fetch("https://router.project-osrm.org/route/v1/driving/" + fromLng + "," + fromLat + ";" + cinemaLng + "," + cinemaLat + "?overview=full&geometries=geojson")
+          .then(function(response) { return response.json(); })
+          .then(function(data) {
+            if (routeLayer) map.removeLayer(routeLayer);
+            routeLayer = L.geoJSON(data.routes[0].geometry, {color: "#e91e63", weight: 5}).addTo(map);
+            map.fitBounds(routeLayer.getBounds(), {padding: [20, 20]});
+          });
+      }
     </script>
-</body>
+  </body>
 </html>

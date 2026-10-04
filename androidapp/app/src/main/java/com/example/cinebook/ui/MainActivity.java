@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        findViewById(R.id.quickWatchlist).setOnClickListener(v ->
+                startActivity(CollectionActivity.intent(this, false)));
+        findViewById(R.id.quickFavorites).setOnClickListener(v ->
+                startActivity(CollectionActivity.intent(this, true)));
+        findViewById(R.id.quickMap).setOnClickListener(v ->
+                startActivity(new Intent(this, CinemaMapActivity.class)));
+
         isTabletLayout = findViewById(R.id.detail_container) != null;
 
         if (savedInstanceState == null) {
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         menu.findItem(R.id.action_add_movie).setVisible(session.isAdmin());
+        menu.findItem(R.id.action_cinema_settings).setVisible(session.isAdmin());
         return true;
     }
 
@@ -57,6 +65,15 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
             return true;
         } else if (id == R.id.action_map) {
             startActivity(new Intent(this, CinemaMapActivity.class));
+            return true;
+        } else if (id == R.id.action_watchlist) {
+            startActivity(CollectionActivity.intent(this, false));
+            return true;
+        } else if (id == R.id.action_favorites) {
+            startActivity(CollectionActivity.intent(this, true));
+            return true;
+        } else if (id == R.id.action_cinema_settings) {
+            startActivity(new Intent(this, CinemaSettingsActivity.class));
             return true;
         } else if (id == R.id.action_logout) {
             session.clear();

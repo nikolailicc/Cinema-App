@@ -32,10 +32,14 @@ public class WatchlistService {
         User user = userRepository.findByUsername(username).orElseThrow();
         Movie movie = movieRepository.findById(movieId).orElseThrow();
 
-        WatchlistItem item = watchlistRepository.findByUserAndMovie(user, movie).orElse(new WatchlistItem());
+        WatchlistItem item = watchlistRepository.findByUserAndMovieAndListType(user, movie, "WATCHLIST")
+                .or(() -> watchlistRepository.findByUserAndMovie(user, movie)
+                        .filter(existing -> existing.getListType() == null))
+                .orElseGet(WatchlistItem::new);
         item.setUser(user);
         item.setMovie(movie);
         item.setStatus(status);
+        item.setListType("WATCHLIST");
         item.setAddedAt(LocalDateTime.now());
         return watchlistRepository.save(item);
     }
@@ -43,12 +47,47 @@ public class WatchlistService {
     public void remove(String username, Long movieId) {
         User user = userRepository.findByUsername(username).orElseThrow();
         Movie movie = movieRepository.findById(movieId).orElseThrow();
-        watchlistRepository.findByUserAndMovie(user, movie).ifPresent(watchlistRepository::delete);
+        watchlistRepository.findByUserAndMovieAndListType(user, movie, "WATCHLIST")
+                .or(() -> watchlistRepository.findByUserAndMovie(user, movie)
+                        .filter(item -> item.getListType() == null))
+                .ifPresent(watchlistRepository::delete);
     }
 
     public List<Map<String, Object>> getWatchlist(String username) {
+        return getCollection(username, "WATCHLIST");
+    }
+
+    public WatchlistItem addFavorite(String username, Long movieId) {
         User user = userRepository.findByUsername(username).orElseThrow();
-        List<WatchlistItem> items = watchlistRepository.findByUser(user);
+        Movie movie = movieRepository.findById(movieId).orElseThrow();
+        WatchlistItem item = watchlistRepository.findByUserAndMovieAndListType(user, movie, "FAVORITE")
+                .orElse(new WatchlistItem());
+        item.setUser(user);
+        item.setMovie(movie);
+        item.setStatus("FAVORITE");
+        item.setListType("FAVORITE");
+        item.setAddedAt(LocalDateTime.now());
+        return watchlistRepository.save(item);
+    }
+
+    public void removeFavorite(String username, Long movieId) {
+        User user = userRepository.findByUsername(username).orElseThrow();
+        Movie movie = movieRepository.findById(movieId).orElseThrow();
+        watchlistRepository.findByUserAndMovieAndListType(user, movie, "FAVORITE")
+                .ifPresent(watchlistRepository::delete);
+    }
+
+    public List<Map<String, Object>> getFavorites(String username) {
+        return getCollection(username, "FAVORITE");
+    }
+
+    private List<Map<String, Object>> getCollection(String username, String listType) {
+        User user = userRepository.findByUsername(username).orElseThrow();
+        List<WatchlistItem> items = new ArrayList<>(watchlistRepository.findByUserAndListType(user, listType));
+        if ("WATCHLIST".equals(listType)) {
+            items.addAll(watchlistRepository.findByUser(user).stream()
+                    .filter(item -> item.getListType() == null).toList());
+        }
         List<Map<String, Object>> result = new ArrayList<>();
         for (WatchlistItem item : items) {
             Map<String, Object> m = new HashMap<>();
@@ -59,8 +98,11 @@ public class WatchlistService {
             Map<String, Object> movieMap = new HashMap<>();
             movieMap.put("id", movie.getId());
             movieMap.put("title", movie.getTitle());
+            movieMap.put("description", movie.getDescription());
             movieMap.put("genre", movie.getGenre());
             movieMap.put("duration", movie.getDuration());
+            movieMap.put("screeningDate", movie.getScreeningDate());
+            movieMap.put("imageUrl", movie.getImageUrl());
             m.put("movie", movieMap);
             result.add(m);
         }

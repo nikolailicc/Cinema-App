@@ -34,6 +34,7 @@ import com.example.cinebook.util.SessionManager;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +52,7 @@ public class MovieDetailFragment extends Fragment {
     private ImageView imagePoster;
     private TextView textTitle, textMeta, textDescription;
     private RatingBar ratingBar;
-    private Button btnWatchlist, btnReserve, btnEdit, btnDelete, btnAddComment;
+    private Button btnWatchlist, btnFavorite, btnReserve, btnEdit, btnDelete, btnAddComment;
     private LinearLayout adminActions;
     private EditText editComment;
     private RecyclerView recyclerComments;
@@ -92,6 +93,7 @@ public class MovieDetailFragment extends Fragment {
         textDescription = view.findViewById(R.id.textDescription);
         ratingBar = view.findViewById(R.id.ratingBar);
         btnWatchlist = view.findViewById(R.id.btnWatchlist);
+        btnFavorite = view.findViewById(R.id.btnFavorite);
         btnReserve = view.findViewById(R.id.btnReserve);
         adminActions = view.findViewById(R.id.adminActions);
         btnEdit = view.findViewById(R.id.btnEdit);
@@ -111,6 +113,7 @@ public class MovieDetailFragment extends Fragment {
         adminActions.setVisibility(session.isAdmin() ? View.VISIBLE : View.GONE);
 
         btnWatchlist.setOnClickListener(v -> toggleWatchlist());
+        btnFavorite.setOnClickListener(v -> toggleFavorite());
         btnReserve.setOnClickListener(v -> showReservationDialog());
         btnAddComment.setOnClickListener(v -> addComment());
         ratingBar.setOnRatingBarChangeListener((rb, rating, fromUser) -> {
@@ -133,11 +136,52 @@ public class MovieDetailFragment extends Fragment {
 
         boolean inWatchlist = localStore.isInWatchlist(movie.getId());
         btnWatchlist.setText(inWatchlist ? R.string.remove_from_watchlist : R.string.add_to_watchlist);
+        loadFavoriteState();
 
         if (movie.getImageUrl() != null && !movie.getImageUrl().isEmpty()) {
                 Glide.with(this).load(RetrofitClient.absoluteImageUrl(movie.getImageUrl()))
                     .centerCrop().into(imagePoster);
         }
+    }
+
+    private void loadFavoriteState() {
+            RetrofitClient.getApiService(requireContext()).getMyFavorites().enqueue(new Callback<List<com.example.cinebook.model.WatchlistEntry>>() {
+                @Override public void onResponse(Call<List<com.example.cinebook.model.WatchlistEntry>> call, Response<List<com.example.cinebook.model.WatchlistEntry>> response) {
+                    boolean favorite = false;
+                    if (response.isSuccessful() && response.body() != null) {
+                        for (com.example.cinebook.model.WatchlistEntry entry : response.body()) {
+                            if (entry.getMovie() != null && movie.getId().equals(entry.getMovie().getId())) { favorite = true; break; }
+                        }
+                    }
+                    btnFavorite.setText(favorite ? R.string.remove_from_favorites : R.string.add_to_favorites);
+                }
+                @Override public void onFailure(Call<List<com.example.cinebook.model.WatchlistEntry>> call, Throwable t) { }
+            });
+        }
+
+    private void toggleFavorite() {
+            ApiService api = RetrofitClient.getApiService(requireContext());
+            boolean marked = btnFavorite.getText().toString().equals(getString(R.string.remove_from_favorites));
+            Call<Void> call = marked ? api.removeFromFavorites(movie.getId()) : api.addToFavorites(movie.getId());
+            call.enqueue(new Callback<Void>() {
+                @Override public void onResponse(Call<Void> c, Response<Void> r) {
+                    if (r.isSuccessful()) btnFavorite.setText(marked ? R.string.add_to_favorites : R.string.remove_from_favorites);
+                    else {
+                        String message = "Greška pri izmeni omiljenih (HTTP " + r.code() + ")";
+                        if (r.errorBody() != null) {
+                            try {
+                                String body = r.errorBody().string().trim();
+                                if (!body.isEmpty()) message += ": " + body;
+                            } catch (IOException ignored) {
+                            }
+                        }
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override public void onFailure(Call<Void> c, Throwable t) {
+                    Toast.makeText(requireContext(), "Greška: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
     private void loadRating() {

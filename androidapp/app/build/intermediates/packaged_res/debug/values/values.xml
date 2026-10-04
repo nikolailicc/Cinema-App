@@ -10,12 +10,16 @@
     <color name="white">#FFFFFF</color>
     <string name="add_comment">Dodaj komentar</string>
     <string name="add_movie">Dodaj film</string>
+    <string name="add_to_favorites">Dodaj u omiljene</string>
     <string name="add_to_watchlist">Dodaj na watchlist</string>
     <string name="app_name">CineBook</string>
     <string name="cancel">Otkaži</string>
     <string name="cinema_address">Karađorđeva 3, Beograd</string>
+    <string name="cinema_latitude">Geografska širina</string>
     <string name="cinema_location">Lokacija bioskopa</string>
+    <string name="cinema_longitude">Geografska dužina</string>
     <string name="cinema_name">Bioskop "Kolosej" Beograd</string>
+    <string name="cinema_settings">Podešavanje bioskopa</string>
     <string name="comments">Komentari</string>
     <string name="confirm">Potvrdi</string>
     <string name="delete">Obriši</string>
@@ -23,8 +27,11 @@
     <string name="duration">Trajanje (min)</string>
     <string name="edit">Izmeni</string>
     <string name="empty_field_error">Popunite sva obavezna polja</string>
+    <string name="favorite">Omiljeni</string>
+    <string name="favorites">Omiljeni filmovi</string>
     <string name="genre">Žanr</string>
     <string name="have_account">Već imate nalog? Prijavite se</string>
+    <string name="location_permission_required">Dozvola za lokaciju je potrebna za prikaz rute.</string>
     <string name="login">Prijava</string>
     <string name="login_failed">Neuspešna prijava. Proverite podatke.</string>
     <string name="logout">Odjava</string>
@@ -39,9 +46,11 @@
     <string name="reminder_channel_name">Podsetnici za rezervacije</string>
     <string name="reminder_text_placeholder">Vaš film %1$s počinje danas!</string>
     <string name="reminder_title">Podsetnik: rezervacija filma</string>
+    <string name="remove_from_favorites">Ukloni iz omiljenih</string>
     <string name="remove_from_watchlist">Ukloni sa watchlist-a</string>
     <string name="reservation_created">Rezervacija je uspešno kreirana</string>
     <string name="reserve">Rezerviši</string>
+    <string name="route">Prikaži rutu od moje lokacije</string>
     <string name="save">Sačuvaj</string>
     <string name="screening_date">Datum prikazivanja (yyyy-MM-dd)</string>
     <string name="title">Naziv filma</string>
@@ -50,6 +59,7 @@
     <string name="upload_success">Slika je uspešno postavljena</string>
     <string name="uploading_image">Slika se postavlja…</string>
     <string name="username">Korisničko ime</string>
+    <string name="watchlist">Watchlist</string>
     <style name="Theme.CineBook" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>

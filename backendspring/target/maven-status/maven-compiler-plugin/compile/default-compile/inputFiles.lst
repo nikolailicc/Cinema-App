@@ -1,6 +1,8 @@
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\config\OpenApiConfig.java
+C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\config\WatchlistSchemaMigration.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\config\WebConfig.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\AuthController.java
+C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\CinemaSettingsController.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\CommentController.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\MovieController.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\RatingController.java
@@ -10,6 +12,7 @@ C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\con
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\UserController.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\controller\WatchlistController.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\DataInitializer.java
+C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\model\CinemaSettings.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\model\Comment.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\model\Movie.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\model\Rating.java
@@ -17,6 +20,7 @@ C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\mod
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\model\User.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\model\WatchlistItem.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\MoviesApplication.java
+C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\repository\CinemaSettingsRepository.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\repository\CommentRepository.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\repository\MovieRepository.java
 C:\Users\USER\Desktop\android\backendspring\src\main\java\com\example\movies\repository\RatingRepository.java
