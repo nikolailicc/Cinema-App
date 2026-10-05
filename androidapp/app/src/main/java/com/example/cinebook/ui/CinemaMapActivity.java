@@ -81,6 +81,9 @@ public class CinemaMapActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         Toast.makeText(this, "Tražim trenutnu lokaciju uređaja…", Toast.LENGTH_SHORT).show();
         pendingLocationListener = location -> {
+            if (!LocationManager.GPS_PROVIDER.equals(location.getProvider())) {
+                return;
+            }
             showRoute(location);
             if (locationManager != null) {
                 locationManager.removeUpdates(pendingLocationListener);
@@ -90,10 +93,8 @@ public class CinemaMapActivity extends AppCompatActivity {
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (gpsEnabled) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, pendingLocationListener);
-        } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, pendingLocationListener);
         } else {
-            Toast.makeText(this, "Lokacija uređaja nije dostupna", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Uključite GPS lokaciju uređaja", Toast.LENGTH_LONG).show();
         }
     }
 
