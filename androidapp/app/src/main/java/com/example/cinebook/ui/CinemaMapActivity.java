@@ -86,12 +86,14 @@ public class CinemaMapActivity extends AppCompatActivity {
                 locationManager.removeUpdates(pendingLocationListener);
             }
         };
-        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        boolean gpsEnabled = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (gpsEnabled) {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, pendingLocationListener);
-        }
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+        } else if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, pendingLocationListener);
+        } else {
+            Toast.makeText(this, "Lokacija uređaja nije dostupna", Toast.LENGTH_LONG).show();
         }
     }
 

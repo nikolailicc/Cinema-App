@@ -4,6 +4,7 @@ import com.example.movies.model.CinemaSettings;
 import com.example.movies.repository.CinemaSettingsRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,6 +13,18 @@ public class CinemaSettingsController {
 
     private static final long SETTINGS_ID = 1L;
     private final CinemaSettingsRepository repository;
+
+    @Value("${cinema.default.name}")
+    private String defaultName;
+
+    @Value("${cinema.default.address}")
+    private String defaultAddress;
+
+    @Value("${cinema.default.latitude}")
+    private double defaultLatitude;
+
+    @Value("${cinema.default.longitude}")
+    private double defaultLongitude;
 
     public CinemaSettingsController(CinemaSettingsRepository repository) {
         this.repository = repository;
@@ -43,10 +56,10 @@ public class CinemaSettingsController {
     private CinemaSettings defaults() {
         CinemaSettings settings = new CinemaSettings();
         settings.setId(SETTINGS_ID);
-        settings.setName("Bioskop \"Kolosej\" Beograd");
-        settings.setAddress("Karađorđeva 3, Beograd");
-        settings.setLatitude(44.8206);
-        settings.setLongitude(20.4587);
+        settings.setName(defaultName);
+        settings.setAddress(defaultAddress);
+        settings.setLatitude(defaultLatitude);
+        settings.setLongitude(defaultLongitude);
         return settings;
     }
 }

@@ -8,10 +8,10 @@ dodatna Android koncepta pored obaveznog rada sa internet servisom.
 
 1. Otvoriti folder `CineBook` u Android Studio (File → Open).
 2. Sačekati Gradle sync (Android Studio će sam ponuditi da doda `gradlew` wrapper ako nedostaje).
-3. **Podesiti adresu backend-a** u fajlu
-   `app/src/main/java/com/example/cinebook/api/RetrofitClient.java`:
-   - `10.0.2.2:8080` — ako testirate na **Android emulatoru**, a backend je na istom računaru (ovo je podrazumevano podešeno).
-   - IP adresa računara u lokalnoj mreži (npr. `192.168.0.x:8080`) — ako testirate na **fizičkom uređaju**.
+3. **Podesiti adresu backend-a** Gradle svojstvom, da bi i API i slike koristili isti server:
+   - emulator: `gradlew assembleDebug` (podrazumevano koristi `http://10.0.2.2:8080/`)
+   - fizički uređaj/tablet: `gradlew assembleDebug -PapiBaseUrl=http://192.168.1.5:8080/`
+   Zameniti `192.168.1.5` stvarnom IPv4 adresom računara u istoj Wi-Fi mreži.
 4. Mapa koristi **Leaflet.js (OpenStreetMap)** kroz `WebView` — nije potreban nikakav
    API ključ, samo internet konekcija na uređaju/emulatoru.
 5. Pokrenuti backend (`localhost:8080`) pre pokretanja aplikacije.
@@ -74,8 +74,9 @@ util/           SessionManager (čuvanje kredencijala)
 - Mapa je implementirana preko **Leaflet.js** (OpenStreetMap tile-ovi) unutar `WebView`-a
   — ne zahteva Google Play Services niti API ključ, samo internet konekciju.
   `WebView` učitava lokalni `assets/map.html` koji renderuje mapu i marker sa popup-om
-  (naziv i adresa bioskopa). Aplikacija je koncipirana za jedan bioskop, pa je lokacija
-  fiksna (nije deo backend modela).
+  (naziv i adresa bioskopa). Lokacija se čita iz `/cinema/settings`; administrator
+  je može promeniti kroz podešavanja bioskopa. Podrazumevane vrednosti su u
+  `application.properties` i koriste se samo kada baza još nema sačuvanu lokaciju.
 - Dugme **"Navigiraj"** šalje `geo:` Intent koji otvara podrazumevanu navigacionu
   aplikaciju na uređaju (ili OpenStreetMap rutu u browseru ako nijedna nije instalirana)
   — interakcija korisnika sa mapom/lokacijom.
